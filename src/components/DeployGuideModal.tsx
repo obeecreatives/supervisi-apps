@@ -96,14 +96,56 @@ git push -u origin main`;
             </ol>
           </div>
 
-          {/* Step 3: Multi-User Collaboration Note */}
+          {/* Step 3: Environment Variables on Vercel */}
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-200 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-slate-800 text-cyan-400 font-mono text-[10px] flex items-center justify-center font-bold">
+                  3
+                </span>
+                Data Environment Variables untuk Vercel
+              </span>
+              <button
+                onClick={() => handleCopy(`# Vercel Environment Variables
+VITE_APP_URL="https://your-app-name.vercel.app"
+NODE_VERSION="20.x"
+# GEMINI_API_KEY="AIzaSy..." (Opsional jika menambahkan asisten server)`, 'env')}
+                className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1 bg-slate-900 px-2 py-1 rounded border border-slate-800"
+              >
+                {copiedKey === 'env' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                <span>{copiedKey === 'env' ? 'Tersalin' : 'Salin .env'}</span>
+              </button>
+            </div>
+            
+            <div className="text-[11px] text-slate-300 space-y-1">
+              <p className="text-emerald-400 font-semibold">
+                ✨ Zero-Config Build: Aplikasi ini dapat langsung di-deploy tanpa wajib mengisi env apapun!
+              </p>
+              <p className="text-slate-400">
+                Namun jika Anda ingin mengatur variabel kustom di <strong>Vercel Settings → Environment Variables</strong>:
+              </p>
+            </div>
+
+            <pre className="p-3 bg-slate-900 rounded-lg text-cyan-300 font-mono text-[11px] overflow-x-auto leading-relaxed border border-slate-800/80">
+{`# 1. URL domain aplikasi Vercel Anda (Opsional)
+VITE_APP_URL="https://gas-modernization-hub.vercel.app"
+
+# 2. Node.js runtime version (Opsional, Vercel default otomatis Node 20.x)
+NODE_VERSION="20.x"
+
+# 3. Gemini API Key (Opsional, hanya jika menggunakan fitur AI analysis di masa depan)
+# GEMINI_API_KEY="AIzaSy..."`}
+            </pre>
+          </div>
+
+          {/* Step 4: Multi-User Collaboration Note */}
           <div className="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-1.5">
             <span className="font-bold text-slate-200 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-amber-400" />
-              Catatan Arsitektur untuk Kolaborasi Multi-Pengguna:
+              Catatan Penyimpanan Data:
             </span>
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              Saat ini data disimpan secara lokal pada browser (<code>localStorage</code>), sehingga sangat aman dan instan untuk penggunaan pribadi Anda. Jika nantinya ingin agar tim teknis lain dapat mengedit daftar sistem yang sama dari laptop berbeda, kita tinggal menghubungkan backend database cloud (misal: <strong>Supabase / PostgreSQL Cloud</strong>).
+              Saat ini data dossier dan link proyek tersimpan aman di <code>localStorage</code> peramban Anda. Ke depan, jika Anda ingin menghubungkan database cloud terpusat untuk kolaborasi multi-admin, kita tinggal menambahkan variable <code>DATABASE_URL</code> (PostgreSQL / Supabase).
             </p>
           </div>
 
