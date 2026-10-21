@@ -14,6 +14,7 @@ import { AppDossierManagerTab } from './components/AppDossierManagerTab';
 import { NewAuditModal } from './components/NewAuditModal';
 import { ExportReportModal } from './components/ExportReportModal';
 import { DeployGuideModal } from './components/DeployGuideModal';
+import { OfflineIndicator } from './components/OfflineIndicator';
 import {
   Shield,
   Layers,
@@ -138,7 +139,7 @@ export default function App() {
       </section>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-8">
         {/* App Switcher Tabs */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2.5">
@@ -376,10 +377,65 @@ export default function App() {
         project={activeProject}
       />
 
+      {/* Mobile Bottom Navigation Bar (< 768px for Smartphones) */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-slate-900/95 backdrop-blur-xl border-t border-slate-800 px-2 py-1.5 flex items-center justify-around shadow-2xl safe-area-inset-bottom">
+        <button
+          onClick={() => setActiveTab('dossier')}
+          className={`flex flex-col items-center gap-0.5 py-1 px-2.5 rounded-lg transition-colors ${
+            activeTab === 'dossier' ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <FolderKanban className="w-4 h-4" />
+          <span className="text-[10px]">Dossier</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('audit')}
+          className={`flex flex-col items-center gap-0.5 py-1 px-2.5 rounded-lg transition-colors ${
+            activeTab === 'audit' ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <AlertOctagon className="w-4 h-4" />
+          <span className="text-[10px]">Audit</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('recommendations')}
+          className={`flex flex-col items-center gap-0.5 py-1 px-2.5 rounded-lg transition-colors ${
+            activeTab === 'recommendations' ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <Shield className="w-4 h-4" />
+          <span className="text-[10px]">Solusi</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('roadmap')}
+          className={`flex flex-col items-center gap-0.5 py-1 px-2.5 rounded-lg transition-colors ${
+            activeTab === 'roadmap' ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <Calendar className="w-4 h-4" />
+          <span className="text-[10px]">Roadmap</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('checklist')}
+          className={`flex flex-col items-center gap-0.5 py-1 px-2.5 rounded-lg transition-colors ${
+            activeTab === 'checklist' ? 'text-emerald-400 font-bold' : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <ClipboardList className="w-4 h-4" />
+          <span className="text-[10px]">Intake</span>
+        </button>
+      </nav>
+
       <DeployGuideModal
         isOpen={isDeployGuideOpen}
         onClose={() => setIsDeployGuideOpen(false)}
       />
+
+      <OfflineIndicator />
     </div>
   );
 }

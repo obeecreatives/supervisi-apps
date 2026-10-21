@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Database, Smartphone, Zap, FileText, GitBranch } from 'lucide-react';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   onOpenNewAudit: () => void;
@@ -35,28 +36,16 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="hidden lg:flex items-center gap-3 px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300">
-              <span className="flex items-center gap-1.5 text-emerald-400">
-                <Database className="w-3.5 h-3.5" /> Cloud SQL / Postgres
-              </span>
-              <span className="text-slate-600">•</span>
-              <span className="flex items-center gap-1.5 text-cyan-400">
-                <Zap className="w-3.5 h-3.5" /> High Concurrency
-              </span>
-              <span className="text-slate-600">•</span>
-              <span className="flex items-center gap-1.5 text-indigo-400">
-                <Smartphone className="w-3.5 h-3.5" /> Android Offline-First
-              </span>
-            </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <PWAInstallButton />
 
             <button
               onClick={onOpenDeployGuide}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-colors shadow-sm"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition-colors shadow-sm"
               title="Panduan push GitHub & deploy ke Vercel"
             >
               <GitBranch className="w-4 h-4 text-cyan-400" />
-              <span>Deploy GitHub & Vercel</span>
+              <span>Deploy Vercel</span>
             </button>
 
             <button
