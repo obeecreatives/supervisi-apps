@@ -41,6 +41,9 @@ Meskipun Google Sheets memberikan kemudahan di fase prototyping awal, sistem kin
 - **Pengguna Aktif Harian (DAU)**: ${project.metrics.dailyActiveUsers} pengguna
 - **Peak Request Rate**: ${project.metrics.peakRequestsPerMinute} req/menit
 
+${project.attachedDocs && project.attachedDocs.length > 0 ? `### Dokumen Spesifikasi Terlampir:
+${project.attachedDocs.map(d => `- **${d.name}** (${(d.size / 1024).toFixed(1)} KB, Diunggah: ${d.uploadedAt})`).join('\n')}
+` : ''}
 ${project.criticalNotes ? `### Catatan Kritis Lapangan (Bottleneck User):\n${project.criticalNotes}\n` : ''}
 ${project.leadRecommendationNotes ? `### Catatan Arahan Lead Developer:\n${project.leadRecommendationNotes}\n` : ''}
 

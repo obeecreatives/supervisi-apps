@@ -60,6 +60,15 @@ export type SupervisionStatus =
   | 'android_dev'
   | 'production_ready';
 
+export interface AttachedDocument {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  uploadedAt: string;
+  dataUrl?: string;
+}
+
 export interface AppProject {
   id: string;
   name: string;
@@ -70,6 +79,7 @@ export interface AppProject {
   leadRecommendationNotes?: string;
   supervisionStatus?: SupervisionStatus;
   targetDatabase?: 'postgresql' | 'firestore' | 'hybrid_sync' | 'optimized_gas';
+  attachedDocs?: AttachedDocument[];
   currentStack: {
     frontend: string;
     backend: string;
